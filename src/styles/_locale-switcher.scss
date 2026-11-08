@@ -1,0 +1,55 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.locale-switcher {
+  &__list {
+    @include m.unstyled-list;
+    display: flex;
+    align-items: center;
+    gap: v.$space-2xs;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: v.$field-height-compact;
+    padding-inline: v.$space-sm;
+    border-radius: v.$radius-pill;
+    font-size: v.$font-size-sm;
+    font-weight: 500;
+    color: m.token("text-muted");
+    transition:
+      background v.$duration-fast ease,
+      color v.$duration-fast ease;
+
+    @include m.hover-capable {
+      &:hover {
+        background: m.token("surface-2");
+        color: m.token("text");
+        text-decoration: none;
+      }
+    }
+
+    &:active {
+      background: m.token("surface-3");
+    }
+
+    &:focus-visible {
+      @include m.focus-halo;
+    }
+
+    &.is-active {
+      background: m.token("accent-soft");
+      color: m.token("accent");
+    }
+
+    @include m.reduced-motion {
+      transition: none;
+    }
+
+    @include m.respond-below("mobile") {
+      padding-inline: v.$space-xs;
+      font-size: v.$font-size-xs;
+    }
+  }
+}

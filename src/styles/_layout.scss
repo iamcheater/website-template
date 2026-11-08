@@ -1,0 +1,25 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.container {
+  @include m.container;
+}
+
+.site-main {
+  flex: 1;
+}
+
+.section {
+  padding-block: v.$section-space;
+
+  @include m.respond-below("tablet") {
+    padding-block: v.$section-space-mobile;
+  }
+}
+
+.lead {
+  margin-top: v.$space-lg;
+  max-width: v.$text-measure;
+  font-size: v.$font-size-lg;
+  color: m.token("text-muted");
+}

@@ -1,0 +1,41 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+:root {
+  @include m.emit-theme(v.$theme-light);
+
+  --radius: #{v.$radius};
+  --radius-sm: #{v.$radius-sm};
+  --header-height: #{v.$header-height};
+
+  --sans: #{v.$font-sans};
+  --mono: #{v.$font-mono};
+
+  font-family: m.token("sans");
+  font-size: v.$font-size-base;
+  line-height: v.$line-height-base;
+  color: m.token("text");
+  background: m.token("bg");
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include m.respond-below("mobile") {
+    --header-height: #{v.$header-height-mobile};
+  }
+}
+
+@mixin dark-root {
+  @include m.emit-theme(v.$theme-dark);
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] {
+  @include dark-root;
+}
+
+@include m.prefers-dark {
+  :root:not([data-theme]) {
+    @include dark-root;
+  }
+}

@@ -1,0 +1,165 @@
+$breakpoints: (
+  "desktop": 1200px,
+  "laptop": 1024px,
+  "tablet": 768px,
+  "mobile": 576px,
+);
+
+$z-index: (
+  "raised": 1,
+  "header": 50,
+  "backdrop": 55,
+  "drawer": 60,
+  "modal": 100,
+  "popup": 110,
+  "tooltip": 120,
+  "skip-link": 200,
+);
+
+$space-2xs: 4px;
+$space-xs: 8px;
+$space-sm: 10px;
+$space-md: 14px;
+$space-lg: 16px;
+$space-xl: 24px;
+$space-2xl: 32px;
+$space-3xl: 48px;
+$space-4xl: 72px;
+
+$radius: 8px;
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-pill: 999px;
+
+$opacity-disabled: 0.5;
+
+$field-height: 40px;
+$field-height-compact: 32px;
+
+$container-max-width: 1200px;
+$container-gutter: 24px;
+$container-gutter-mobile: 16px;
+$header-height: 68px;
+$header-height-mobile: 60px;
+$section-space: 72px;
+$section-space-mobile: 48px;
+$text-measure: 64ch;
+
+$focus-ring-width: 2px;
+$focus-ring-offset: 2px;
+$focus-halo-width: 3px;
+
+$duration-fast: 0.12s;
+$duration-base: 0.2s;
+$duration-drawer: 0.5s;
+$duration-modal-in: 0.2s;
+$duration-modal-out: 0.14s;
+
+$font-sans: (
+  var(--font-dm-sans),
+  var(--font-noto-sans-armenian),
+  var(--font-inter),
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  Roboto,
+  Helvetica,
+  Arial,
+  sans-serif
+);
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+$font-size-base: 16px;
+$font-size-lg: 18px;
+$font-size-sm: 14px;
+$font-size-xs: 12px;
+$font-size-label: 11.5px;
+$font-size-h1: clamp(28px, 4vw, 44px);
+$font-size-h2: clamp(22px, 3vw, 32px);
+$font-size-h3: 20px;
+$font-size-display: clamp(56px, 10vw, 96px);
+
+$line-height-base: 1.6;
+$line-height-tight: 1.2;
+
+$theme-light: (
+  "bg": #f6f7f9,
+  "surface": #ffffff,
+  "surface-2": #f0f2f5,
+  "surface-3": #f5f5f8,
+  "text": #1c2430,
+  "text-secondary": #2b303b,
+  "text-muted": #64748b,
+  "border": #e2e6ec,
+  "border-strong": #cbd3de,
+
+  "accent": #006eff,
+  "accent-hover": #0057cc,
+  "accent-active": #0047a8,
+  "accent-fg": #ffffff,
+  "accent-soft": rgba(0, 110, 255, 0.1),
+  "success": #30d158,
+  "success-soft": rgba(48, 209, 88, 0.2),
+  "warning": #ff8c00,
+  "warning-hover": #e67e00,
+  "warning-soft": #ff8c001a,
+  "danger": #ff453a,
+  "danger-hover": #fa291d,
+  "danger-soft": rgba(255, 69, 58, 0.1),
+  "danger-soft-hover": rgba(255, 69, 58, 0.3),
+  "info": #0369a1,
+  "info-soft": rgba(3, 105, 161, 0.12),
+  "overlay": rgba(9, 13, 20, 0.55),
+  "modal-backdrop": rgba(0, 0, 0, 0.5),
+  "header-bg": rgba(255, 255, 255, 0.85),
+  "shadow-sm": (
+    0 1px 2px rgba(16, 24, 40, 0.06),
+  ),
+  "shadow-md": (
+    0 8px 24px rgba(16, 24, 40, 0.12),
+  ),
+  "shadow-popover": (
+    0 4px 12px rgba(15, 23, 42, 0.05),
+  ),
+);
+
+$theme-dark: (
+  "bg": #0e131b,
+  "surface": #161d27,
+  "surface-2": #1e2732,
+  "surface-3": #222b36,
+  "text": #e6ebf2,
+  "text-secondary": #e6ebf2,
+  "text-muted": #8b98ab,
+  "border": #263140,
+  "border-strong": #334154,
+
+  "accent": #3b8cff,
+  "accent-hover": #6aa8ff,
+  "accent-active": #8dbcff,
+  "accent-fg": #ffffff,
+  "accent-soft": rgba(0, 110, 255, 0.22),
+  "success": #4ade80,
+  "success-soft": rgba(74, 222, 128, 0.14),
+  "warning": #ff8c00,
+  "warning-hover": #e67e00,
+  "warning-soft": rgba(251, 191, 36, 0.14),
+  "danger": #f87171,
+  "danger-hover": #fca5a5,
+  "danger-soft": rgba(248, 113, 113, 0.14),
+  "danger-soft-hover": rgba(248, 113, 113, 0.28),
+  "info": #38bdf8,
+  "info-soft": rgba(56, 189, 248, 0.14),
+  "overlay": rgba(0, 0, 0, 0.6),
+  "modal-backdrop": rgba(0, 0, 0, 0.6),
+  "header-bg": rgba(22, 29, 39, 0.85),
+  "shadow-sm": (
+    0 1px 2px rgba(0, 0, 0, 0.4),
+  ),
+  "shadow-md": (
+    0 8px 24px rgba(0, 0, 0, 0.5),
+  ),
+  "shadow-popover": (
+    0 4px 12px rgba(0, 0, 0, 0.35),
+  ),
+);

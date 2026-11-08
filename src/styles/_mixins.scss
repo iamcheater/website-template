@@ -1,0 +1,160 @@
+@use "sass:map";
+@use "variables" as v;
+
+@function token($name) {
+  @return var(--#{$name});
+}
+
+@function z($layer) {
+  @if not map.has-key(v.$z-index, $layer) {
+    @error 'Unknown z-index layer "#{$layer}".';
+  }
+  @return map.get(v.$z-index, $layer);
+}
+
+@mixin respond-below($breakpoint) {
+  @if not map.has-key(v.$breakpoints, $breakpoint) {
+    @error 'Unknown breakpoint "#{$breakpoint}".';
+  }
+  @media (max-width: map.get(v.$breakpoints, $breakpoint)) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hover-capable {
+  @media (hover: hover) {
+    @content;
+  }
+}
+
+@mixin prefers-dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin emit-theme($theme) {
+  @each $name, $value in $theme {
+    --#{$name}: #{$value};
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: v.$container-max-width;
+  margin-inline: auto;
+  padding-inline: v.$container-gutter;
+
+  @include respond-below("mobile") {
+    padding-inline: v.$container-gutter-mobile;
+  }
+}
+
+@mixin focus-ring {
+  outline: v.$focus-ring-width solid token("accent");
+  outline-offset: v.$focus-ring-offset;
+}
+
+@mixin focus-halo {
+  outline: none;
+  box-shadow: 0 0 0 v.$focus-halo-width token("accent-soft");
+}
+
+@mixin surface($radius: v.$radius) {
+  background: token("surface");
+  border: 1px solid token("border");
+  border-radius: $radius;
+}
+
+@mixin raised($radius: v.$radius) {
+  @include surface($radius);
+  box-shadow: token("shadow-sm");
+}
+
+@mixin label-caps($size: v.$font-size-label) {
+  font-size: $size;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: token("text-muted");
+}
+
+@mixin scroll-x {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+@mixin unstyled-button {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+@mixin unstyled-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@mixin field-control {
+  font: inherit;
+  font-size: v.$font-size-sm;
+  width: 100%;
+  min-height: v.$field-height;
+  padding: 8px 11px;
+  color: token("text");
+  background: token("surface");
+  border: 1px solid token("border-strong");
+  border-radius: v.$radius-sm;
+
+  &:focus {
+    border-color: token("accent");
+    @include focus-halo;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: v.$opacity-disabled;
+  }
+}
+
+@mixin tone($name) {
+  color: token($name);
+  background: token("#{$name}-soft");
+}
+
+@mixin dot($size: 6px) {
+  content: "";
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@mixin overlay($layer) {
+  position: fixed;
+  inset: 0;
+  z-index: z($layer);
+  background: token("overlay");
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

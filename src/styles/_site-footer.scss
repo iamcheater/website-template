@@ -1,0 +1,25 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.site-footer {
+  border-top: 1px solid m.token("border");
+  background: m.token("surface");
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$space-lg;
+    padding-block: v.$space-xl;
+
+    @include m.respond-below("mobile") {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  &__rights {
+    font-size: v.$font-size-sm;
+    color: m.token("text-muted");
+  }
+}

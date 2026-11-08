@@ -1,0 +1,38 @@
+{
+  "brand": {
+    "name": "Website"
+  },
+  "metadata": {
+    "title": "Website",
+    "description": "Our business website."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
+  "localeSwitcher": {
+    "label": "Language",
+    "locales": {
+      "hy": "Հայերեն",
+      "en": "English",
+      "ru": "Русский"
+    }
+  },
+  "footer": {
+    "rights": "{siteName}. All rights reserved."
+  },
+  "home": {
+    "title": "Welcome",
+    "description": "This site is being built."
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Page not found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "action": "Back to home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "We couldn't load this page. Please try again in a moment.",
+    "action": "Try again"
+  }
+}

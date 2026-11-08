@@ -1,0 +1,42 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.status-page {
+  display: flex;
+  align-items: center;
+  min-height: 60svh;
+  padding-block: v.$section-space;
+
+  @include m.respond-below("tablet") {
+    padding-block: v.$section-space-mobile;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__code {
+    font-size: v.$font-size-display;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: m.token("accent");
+  }
+
+  &__title {
+    margin-top: v.$space-lg;
+  }
+
+  &__description {
+    margin-top: v.$space-md;
+    max-width: v.$text-measure;
+    color: m.token("text-muted");
+  }
+
+  &__action {
+    margin-top: v.$space-2xl;
+  }
+}

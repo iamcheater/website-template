@@ -98,6 +98,8 @@ Hardcode only what will not change for months or years (a fixed "about" paragrap
 - Every content request carries a cache tag named after its backend module (`services`, `site-settings`, …).
 - When an admin saves content, the backend calls the site's revalidate route (`/api/revalidate`) with `REVALIDATE_SECRET` and the tags that changed. Only those pages refresh.
 - The revalidate route rejects any request without the correct secret.
+- The contract the backend follows: `POST /api/revalidate`, header `x-revalidate-secret: <REVALIDATE_SECRET>`, body `{ "tags": ["services"] }`. Unknown tags are ignored, and a request with no known tag gets a 400. A new module's tag goes in `CACHE_TAG` in `src/api/constants.ts`.
+- Content is read through `getContent(path, tag)` in `src/api/client.ts` (`"use cache"` + `cacheTag`). Wrap page-level calls in `orNull(...)` so a failed request hides its section and doesn't crash the page.
 - If the backend is down, the last cached version keeps showing. A page never crashes because one request failed.
 
 ### 5. Client components only where the browser is needed
@@ -184,8 +186,10 @@ src/
       page.tsx             home
       not-found.tsx        branded 404
       error.tsx            branded error page
+      [...rest]/page.tsx   sends unknown paths to the branded 404
     api/revalidate/        the secured route the backend calls
     sitemap.ts robots.ts
+  proxy.ts                 next-intl locale redirects (Next 16 renamed middleware to proxy)
   api/
     client.ts              the only backend fetch; base URL, errors, cache tags
     types.ts               hand-mirrored DTOs and enums
@@ -195,6 +199,9 @@ src/
   stores/                  Zustand stores (client UI state only)
   i18n/
     config.ts              default and available locales
+    routing.ts             next-intl routing built from config.ts
+    navigation.ts          locale-aware Link, redirect, usePathname, getPathname
+    request.ts             per-request locale (from next/root-params) and messages
     messages/<locale>.json UI strings, one file per locale
   lib/                     helpers: localized field picker, formatting, dates
   styles/                  main.scss + tokens, mixins, one partial per component

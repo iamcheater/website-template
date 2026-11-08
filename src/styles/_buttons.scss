@@ -1,0 +1,101 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$space-xs;
+  min-height: v.$field-height;
+  padding: v.$space-xs v.$space-lg;
+  border-radius: v.$radius-md;
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: v.$font-size-base;
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background v.$duration-fast ease,
+    border-color v.$duration-fast ease,
+    color v.$duration-fast ease;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    @include m.focus-halo;
+  }
+
+  &:disabled,
+  &[aria-disabled="true"] {
+    opacity: v.$opacity-disabled;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &[aria-busy="true"] {
+    cursor: progress;
+  }
+
+  @include m.reduced-motion {
+    transition: none;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  &--primary {
+    background: m.token("accent");
+    color: m.token("accent-fg");
+
+    @include m.hover-capable {
+      &:not(:disabled):hover {
+        background: m.token("accent-hover");
+      }
+    }
+
+    &:not(:disabled):active {
+      background: m.token("accent-active");
+    }
+  }
+
+  &--secondary {
+    background: m.token("surface");
+    color: m.token("text");
+    border-color: m.token("border-strong");
+
+    @include m.hover-capable {
+      &:not(:disabled):hover {
+        background: m.token("surface-2");
+      }
+    }
+
+    &:not(:disabled):active {
+      background: m.token("surface-3");
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: m.token("text-muted");
+
+    @include m.hover-capable {
+      &:not(:disabled):hover {
+        background: m.token("surface-2");
+        color: m.token("text");
+      }
+    }
+
+    &:not(:disabled):active {
+      background: m.token("surface-3");
+    }
+  }
+}

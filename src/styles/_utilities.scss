@@ -1,0 +1,32 @@
+@use "variables" as v;
+@use "mixins" as m;
+
+.sr-only {
+  @include m.visually-hidden;
+}
+
+.skip-link {
+  position: absolute;
+  top: v.$space-xs;
+  left: v.$space-xs;
+  z-index: m.z("skip-link");
+  padding: v.$space-xs v.$space-lg;
+  border-radius: v.$radius-sm;
+  background: m.token("accent");
+  color: m.token("accent-fg");
+  font-weight: 600;
+  transform: translateY(-200%);
+
+  &:focus-visible {
+    transform: none;
+    text-decoration: none;
+  }
+}
+
+.muted {
+  color: m.token("text-muted");
+}
+
+.text-sm {
+  font-size: v.$font-size-sm;
+}
